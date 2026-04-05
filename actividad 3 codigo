@@ -1,0 +1,970 @@
+ ---view activity---
+
+package com.example.appaudiohircio;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class ViewActivity extends AppCompatActivity {
+
+    Button play1, play2, play3, play4, play5, share1, share2, share3, share4, share5, blue1, blue2, blue3, blue4, blue5;
+    MediaPlayer mp1, mp2, mp3, mp4, mp5;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_view);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        setContentView(R.layout.activity_view);
+        play1 = findViewById(R.id.play1);
+        play2 = findViewById(R.id.play2);
+        play3 = findViewById(R.id.play3);
+        play4 = findViewById(R.id.play4);
+        play5 = findViewById(R.id.play5);
+        share1 = findViewById(R.id.share1);
+        share2 = findViewById(R.id.share2);
+        share3 = findViewById(R.id.share3);
+        share4 = findViewById(R.id.share4);
+        share5 = findViewById(R.id.share5);
+        blue1 = findViewById(R.id.blue1);
+        blue2 = findViewById(R.id.blue2);
+        blue3 = findViewById(R.id.blue3);
+        blue4 = findViewById(R.id.blue4);
+        blue5 = findViewById(R.id.blue5);
+
+        mp1 = MediaPlayer.create(this,R.raw.cancion1);
+        mp2 = MediaPlayer.create(this,R.raw.cancion2);
+        mp3 = MediaPlayer.create(this,R.raw.cancion3);
+        mp4 = MediaPlayer.create(this,R.raw.cancion4);
+        mp5 = MediaPlayer.create(this,R.raw.cancion5);
+
+        play1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mp1.isPlaying()){
+                  mp1.pause();
+                  Toast.makeText(ViewActivity.this, "Pausa", Toast.LENGTH_SHORT).show();
+                }else{
+                     mp1.start();
+                     Toast.makeText(ViewActivity.this, "Play", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        play2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mp2.isPlaying()){
+                    mp2.pause();
+                    Toast.makeText(ViewActivity.this, "Pausa", Toast.LENGTH_SHORT).show();
+                }else{
+                    mp2.start();
+                    Toast.makeText(ViewActivity.this, "Play", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        play3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mp3.isPlaying()){
+                    mp3.pause();
+                    Toast.makeText(ViewActivity.this, "Pausa", Toast.LENGTH_SHORT).show();
+                    }else{
+                    mp3.start();
+                    Toast.makeText(ViewActivity.this, "Play", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        play4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mp4.isPlaying()){
+                    mp4.pause();
+                    Toast.makeText(ViewActivity.this, "Pausa", Toast.LENGTH_SHORT).show();
+                }else{
+                    mp4.start();
+                    Toast.makeText(ViewActivity.this, "Play", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        play5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mp5.isPlaying()){
+                    mp5.pause();
+                    Toast.makeText(ViewActivity.this, "Pausa", Toast.LENGTH_SHORT).show();
+                }else{
+                    mp5.start();
+                    Toast.makeText(ViewActivity.this, "Play", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+        });
+        share1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewActivity.this, ShareActivity.class);
+                startActivity(i);
+            }
+        });
+        share2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewActivity.this, ShareActivity.class);
+                startActivity(i);
+            }
+        });
+        share3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewActivity.this, ShareActivity.class);
+                startActivity(i);
+            }
+        });
+        share4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewActivity.this, ShareActivity.class);
+                startActivity(i);
+            }
+        });
+        share5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ViewActivity.this, ShareActivity.class);
+                startActivity(i);
+            }
+        });
+        blue1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("audio/mp3");
+
+                Uri uri = Uri.parse("android.resource://" + getPackageName() + R.raw.cancion1);
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intent, "Compartir con"));
+            }
+        });
+        blue2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("audio/mp3");
+
+                Uri uri = Uri.parse("android.resource://" + getPackageName() + R.raw.cancion2);
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intent, "Compartir con"));
+            }
+        });
+        blue3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("audio/mp3");
+
+                Uri uri = Uri.parse("android.resource://" + getPackageName() + R.raw.cancion3);
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intent, "Compartir con"));
+            }
+        });
+        blue4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("audio/mp3");
+
+                Uri uri = Uri.parse("android.resource://" + getPackageName() + R.raw.cancion4);
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intent, "Compartir con"));
+            }
+        });
+        blue5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("audio/mp3");
+
+                Uri uri = Uri.parse("android.resource://" + getPackageName() + R.raw.cancion5);
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intent, "Compartir con"));
+            }
+        });
+
+
+    }
+}
+
+---MainActivity---
+
+package com.example.appaudiohircio;
+
+import android.os.Bundle;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import android.content.Intent;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import android.os.Handler;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        //Agregar animaciones: de arriba a abajo
+        Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+        Animation animacion2 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+
+        //Agregar animaciones: de arriba a abajo
+        //Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+        //Animation animacion2 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
+
+        ImageView logoimageview = findViewById(R.id.logoimageview);
+        TextView audiotextview = findViewById(R.id.audiotextview);
+
+        logoimageview.setAnimation (animacion1);
+        audiotextview.setAnimation (animacion2);
+
+
+        new Handler().postDelayed (new Runnable() {
+            @Override
+            public void run() {
+              Intent intent = new Intent(MainActivity.this, ViewActivity.class);
+              startActivity(intent);
+              finish();
+            }
+        },6000);
+
+    }
+}
+
+---ShareActivity---
+
+package com.example.appaudiohircio;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class ShareActivity extends AppCompatActivity {
+
+    Button face, twit, insta, wsp, back;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_share);
+        back = (Button) findViewById(R.id.back);
+        face = (Button) findViewById(R.id.face);
+        twit = (Button) findViewById(R.id.twit);
+        insta = (Button) findViewById(R.id.insta);
+        wsp = (Button) findViewById(R.id.wsp);
+
+        face.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Encuentra la mejor variedad de sonidos en http://wwwsonidosmp3gratis.com");
+                share.setPackage("com.facebook.katana");
+                startActivity(Intent.createChooser(share, "Compartir:"));
+
+            }
+        });
+        wsp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Encuentra la mejor variedad de sonidos en http://wwwsonidosmp3gratis.com");
+                share.setPackage("com.whatsapp");
+                startActivity(Intent.createChooser(share, "Compartir:"));
+
+            }
+        });
+        twit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Encuentra la mejor variedad de sonidos en http://wwwsonidosmp3gratis.com");
+                share.setPackage("com.twitter.android");
+                startActivity(Intent.createChooser(share, "Compartir:"));
+
+            }
+        });
+        insta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Encuentra la mejor variedad de sonidos en http://wwwsonidosmp3gratis.com");
+                share.setPackage("com.instagram");
+                startActivity(Intent.createChooser(share, "Compartir:"));
+
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ShareActivity.this, ViewActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+}
+
+---activity_share
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:background="#F7F2F7">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compartir con..."
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/face"
+                android:layout_width="114dp"
+                android:layout_height="104dp"
+                android:foreground="@drawable/fcb"
+                android:text="button"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="Facebook"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/wsp"
+                android:layout_width="114dp"
+                android:layout_height="104dp"
+                android:foreground="@drawable/wsp"
+                android:text="button"/>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="WhatsApp"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/twit"
+                android:layout_width="114dp"
+                android:layout_height="104dp"
+                android:foreground="@drawable/twit"
+                android:text="button"/>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="Twitter"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/insta"
+                android:layout_width="114dp"
+                android:layout_height="104dp"
+                android:foreground="@drawable/insta"
+                android:text="button"/>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="Instagram"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:foreground="@drawable/back"
+                android:text="button"/>
+       </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+---activity_view---
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037"
+        app:srcCompat="@mipmap/logocop" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Audio Coppel"
+        android:textColor="#021693"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="316dp"
+        android:layout_height="50dp"
+        android:text="Encuentra aqui la gran variedad de musica que coppel selecciona para ti, no olvides compartir para recibir grandes recompensas."
+        android:textColor="#031583"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.171"/>
+
+    <Button
+        android:id="@+id/play1"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29" />
+
+    <TextView
+        android:id="@+id/cancion1"
+        android:layout_width="201dp"
+        android:layout_height="39dp"
+        android:text="Death kirby - Kirby Y The Amazing Mirror"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29"/>
+
+    <Button
+        android:id="@+id/share1"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29" />
+
+    <Button
+        android:id="@+id/blue1"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29" />
+    <Button
+        android:id="@+id/play2"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <TextView
+        android:id="@+id/cancion2"
+        android:layout_width="201dp"
+        android:layout_height="39dp"
+        android:text="Gourmet Race - Kirby Super Star"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"/>
+
+    <Button
+        android:id="@+id/share2"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <Button
+        android:id="@+id/blue2"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+    <Button
+        android:id="@+id/play3"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <TextView
+        android:id="@+id/cancion3"
+        android:layout_width="201dp"
+        android:layout_height="39dp"
+        android:text="Green Greens - Kirby Super Star"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49"/>
+
+    <Button
+        android:id="@+id/share3"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <Button
+        android:id="@+id/blue3"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
+    <Button
+        android:id="@+id/play4"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59" />
+
+    <TextView
+        android:id="@+id/cancion4"
+        android:layout_width="201dp"
+        android:layout_height="39dp"
+        android:text="Sand Canyon - Kirby Dreamland"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59"/>
+
+    <Button
+        android:id="@+id/share4"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59" />
+
+    <Button
+        android:id="@+id/blue4"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59" />
+    <Button
+        android:id="@+id/play5"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69" />
+
+    <TextView
+        android:id="@+id/cancion5"
+        android:layout_width="201dp"
+        android:layout_height="39dp"
+        android:text="1up - Kirby Super Star"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69"/>
+
+    <Button
+        android:id="@+id/share5"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69" />
+
+    <Button
+        android:id="@+id/blue5"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:foreground="@drawable/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.69" />
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+---activity_main---
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/logoimageview"
+        android:layout_width="192dp"
+        android:layout_height="339dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logocop" />
+
+    <TextView
+        android:id="@+id/audiotextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="106dp"
+        android:fontFamily="sans-serif"
+        android:text="Audio Coppel"
+        android:textColor="#0423D1"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoimageview"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+---build.grandle.kts---
+
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace = "com.example.appaudiohircio"
+    compileSdk {
+        version = release(36)
+    }
+
+    defaultConfig {
+        applicationId = "com.example.appaudiohircio"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.activity)
+    implementation(libs.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+}
+
+---androidmanifest---
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppAudioHircio">
+        <activity
+            android:name=".ShareActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+
+---desplazamiento_abajo---
+
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <translate
+        android:fromXDelta="0%"
+        android:fromYDelta="-30%"
+        android:duration="4000"/>
+
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.1"
+        android:duration="4000"/>
+
+</set>
+
+---desplazamiento_arriba---
+
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <translate
+        android:fromXDelta="0%"
+        android:fromYDelta="30%"
+        android:duration="4000"/>
+
+    <alpha
+        android:fromAlpha="0.1"
+        android:toAlpha="1.0"
+        android:duration="4000"/>
+
+</set>
